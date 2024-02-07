@@ -38,6 +38,8 @@ return require('packer').startup(function()
 	use 'rafamadriz/friendly-snippets'
 	-- lspkind
 	use 'onsails/lspkind-nvim'
+	-- gdb
+	use 'mfussenegger/nvim-dap'
 end)
 
 

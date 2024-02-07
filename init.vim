@@ -14,6 +14,7 @@ lua require('plugin_config/bufferline')
 lua require('plugin_config/lualine')
 lua require('plugin_config/nvim-treesitter')
 lua require('plugin_config/rainbow')
+lua require('plugin_config/nvim-dap')
 "lsp
 lua require('lsp/setup')
 lua require('lsp/nvim-cmp')

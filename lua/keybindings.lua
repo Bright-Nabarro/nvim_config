@@ -5,6 +5,13 @@ local opt = {noremap=true, silent=true}
 local opf = {noremap=false, silent=true}
 -- jj -> <esc>
 map('i', 'jj', '<Esc>', opt)
+-- 运行
+vim.cmd[[
+	autocmd FileType cpp  nnoremap <buffer> <F5> :w<CR>:!g++ -g -std=c++20 % && ./a.out<CR>
+	autocmd FileType c    nnoremap <buffer> <F5> :w<CR>:!gcc -g % && ./a.out<CR>
+	autocmd FileType c,cpp  nnoremap <buffer> <A-n> :!./a.out<CR>
+]]
+
 -- 换页
 map('n', '<C-h>', ':bp!<CR>', opf)
 map('n', '<C-l>', ':bn!<CR>', opf)
@@ -23,12 +30,38 @@ map('n', '<C-p>', ':NvimTreeToggle<CR>', opf)
 -- nvim-cmp 自动补全
 local pluginKeys = {}
 
+--gdb
+map('n', '<F6>', "<cmd>lua require'dap'.continue()<CR>", opf)
+map('n', '<leader>nt', "<cmd>lua require'dap'.step_over()<CR>", opf)
+map('n', '<leader>sp', "<cmd>lua require'dap'.step_into()<CR>", opf)
+map('n', '<leader>fi', "<cmd>lua require'dap'.step_out()<CR>", opf)
+map('n', '<leader>b', "<cmd>lua require'dap'.toggle_breakpoint()<CR>", opf)
+map('n', '<leader>B', "<cmd>lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>", opf)
+vim.keymap.set('n', '<leader>lp', function() require('dap').set_breakpoint(nil, nil, vim.fn.input('Log point message: ')) end)
+vim.keymap.set('n', '<leader>r', function() require('dap').repl.open() end)
+vim.keymap.set('n', '<leader>dl', function() require('dap').run_last() end)
+vim.keymap.set({'n', 'v'}, '<leader>dh', function()
+      require('dap.ui.widgets').hover()
+    end)
+    vim.keymap.set({'n', 'v'}, '<leader>dp', function()
+      require('dap.ui.widgets').preview()
+    end)
+    vim.keymap.set('n', '<leader>df', function()
+      local widgets = require('dap.ui.widgets')
+      widgets.centered_float(widgets.frames)
+    end)
+    vim.keymap.set('n', '<leader>ds', function()
+      local widgets = require('dap.ui.widgets')
+      widgets.centered_float(widgets.scopes)
+    end)
+
+
 -- lsp 回调函数快捷键设置
 pluginKeys.maplsp = function(mapbuf)
   -- rename
   mapbuf('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opt)
   -- code action
-  mapbuf('n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opt)
+  mapbuf('n', '<leader>a', '<cmd>lua vim.lsp.buf.code_action()<CR>', opt)
   -- go xx
   mapbuf('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opt)
   mapbuf('n', 'gh', '<cmd>lua vim.lsp.buf.hover()<CR>', opt)
