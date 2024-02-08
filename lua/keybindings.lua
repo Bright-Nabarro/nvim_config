@@ -20,13 +20,13 @@ map("n", "<A-h>", "<C-w>h", opf)
 map("n", "<A-j>", "<C-w>j", opf)
 map("n", "<A-k>", "<C-w>k", opf)
 map("n", "<A-l>", "<C-w>l", opf)
--- 终端
-map('n', '<A-t>', ':terminal<CR>', opf)
-
+--取消搜索高亮
+map("n", "<space><space>", ":noh<CR>", opf)
 --插件--------------------------
 --nvimTree
 map('n', '<C-p>', ':NvimTreeToggle<CR>', opf)
-
+--toggleterm
+map('n', '<leader>t', ":ToggleTerm<CR>", opf)
 -- nvim-cmp 自动补全
 local pluginKeys = {}
 
@@ -61,7 +61,7 @@ pluginKeys.maplsp = function(mapbuf)
   -- rename
   mapbuf('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opt)
   -- code action
-  mapbuf('n', '<leader>a', '<cmd>lua vim.lsp.buf.code_action()<CR>', opt)
+  mapbuf('n', '<leader>wh', '<cmd>lua vim.lsp.buf.code_action()<CR>', opt)
   -- go xx
   mapbuf('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opt)
   mapbuf('n', 'gh', '<cmd>lua vim.lsp.buf.hover()<CR>', opt)
@@ -69,7 +69,7 @@ pluginKeys.maplsp = function(mapbuf)
   mapbuf('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opt)
   mapbuf('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opt)
   -- diagnostic
-  mapbuf('n', 'go', '<cmd>lua vim.diagnostic.open_float()<CR>', opt)
+  mapbuf('n', '<leader>a', '<cmd>lua vim.diagnostic.open_float()<CR>', opt)
   mapbuf('n', 'gp', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opt)
   mapbuf('n', 'gn', '<cmd>lua vim.diagnostic.goto_next()<CR>', opt)
   -- mapbuf('n', '<leader>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', opt)

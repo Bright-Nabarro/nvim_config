@@ -1,7 +1,7 @@
 vim.cmd[[
 	let g:rainbow_active=1
 	let g:rainbow_conf = {
-	\	'guifgs': ['Grey80', 'SteelBlue1','Yellow3','LightPink1','Orange3'],
+	\	'guifgs': ['Grey80', '#BDD5DE','#ceebbc','#FFE2EA','#f0dead'],
 	\	'ctermfgs': ['white', 'lightyellow', 'lightcyan', 'lightmagenta'],
 	\	'operators': '_,_',
 	\	'parentheses': ['start=/(/ end=/)/ fold', 'start=/\[/ end=/\]/ fold', 'start=/{/ end=/}/ fold'],
