@@ -11,7 +11,7 @@ return require('packer').startup(function()
 	use 'glepnir/zephyr-nvim'
 	use 'joshdick/onedark.vim'
 	--rainbow
-	use {'p00f/nvim-ts-rainbow'}
+	use 'hiphish/rainbow-delimiters.nvim'
 	--teminal
 	use {"akinsho/toggleterm.nvim", tag = '*', config = function()
 		require("toggleterm").setup()

@@ -16,10 +16,10 @@ vim.cmd[[
 map('n', '<C-h>', ':bp!<CR>', opf)
 map('n', '<C-l>', ':bn!<CR>', opf)
 -- 切屏
-map("n", "<A-h>", "<C-w>h", opf)
-map("n", "<A-j>", "<C-w>j", opf)
-map("n", "<A-k>", "<C-w>k", opf)
-map("n", "<A-l>", "<C-w>l", opf)
+map("n", "<C-i>h", "<C-w>h", opf)
+map("n", "<C-i>j", "<C-w>j", opf)
+map("n", "<C-i>k", "<C-w>k", opf)
+map("n", "<C-i>l", "<C-w>l", opf)
 --取消搜索高亮
 map("n", "<space><space>", ":noh<CR>", opf)
 --插件--------------------------
@@ -30,7 +30,7 @@ map('n', '<leader>t', ":ToggleTerm<CR>", opf)
 -- nvim-cmp 自动补全
 local pluginKeys = {}
 
---gdb
+--gdb 调试
 map('n', '<F6>', "<cmd>lua require'dap'.continue()<CR>", opf)
 map('n', '<leader>nt', "<cmd>lua require'dap'.step_over()<CR>", opf)
 map('n', '<leader>sp', "<cmd>lua require'dap'.step_into()<CR>", opf)
@@ -38,6 +38,7 @@ map('n', '<leader>fi', "<cmd>lua require'dap'.step_out()<CR>", opf)
 map('n', '<leader>b', "<cmd>lua require'dap'.toggle_breakpoint()<CR>", opf)
 map('n', '<leader>B', "<cmd>lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>", opf)
 vim.keymap.set('n', '<leader>lp', function() require('dap').set_breakpoint(nil, nil, vim.fn.input('Log point message: ')) end)
+----imp
 vim.keymap.set('n', '<leader>r', function() require('dap').repl.open() end)
 vim.keymap.set('n', '<leader>dl', function() require('dap').run_last() end)
 vim.keymap.set({'n', 'v'}, '<leader>dh', function()
